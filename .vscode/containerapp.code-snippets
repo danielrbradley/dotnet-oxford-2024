@@ -1,0 +1,116 @@
+{
+  // Place your netoxford workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "containerApp": {
+    "scope": "csharp",
+    "prefix": "containerApp",
+    "body": [
+      "var containerApp = new Pulumi.AzureNative.App.ContainerApp(\"app\", new Pulumi.AzureNative.App.ContainerAppArgs",
+      "{",
+      "	ResourceGroupName = resourceGroup.Name,",
+      "	ManagedEnvironmentId = managedEnvironment.Id,",
+      "	Template = new Pulumi.AzureNative.App.Inputs.TemplateArgs",
+      "	{",
+      "		Containers = new[]",
+      "		{",
+      "			new Pulumi.AzureNative.App.Inputs.ContainerArgs",
+      "			{",
+      "				Name = \"albumapi\",",
+      "				Image = image.ImageName,",
+      "			}",
+      "		},",
+      "	}",
+      "	Configuration = new Pulumi.AzureNative.App.Inputs.ConfigurationArgs",
+      "	{",
+      "		Ingress = new Pulumi.AzureNative.App.Inputs.IngressArgs",
+      "		{",
+      "			External = true,",
+      "			TargetPort = 8080,",
+      "		},",
+      "		Registries = new Pulumi.AzureNative.App.Inputs.RegistryCredentialsArgs",
+      "		{",
+      "			Server = registry.LoginServer,",
+      "			Username = username,",
+      "			PasswordSecretRef = \"password\",",
+      "		},",
+      "		Secrets = new[]",
+      "		{",
+      "			new Pulumi.AzureNative.App.Inputs.SecretArgs",
+      "			{",
+      "				Name = \"password\",",
+      "				Value = password,",
+      "			},",
+      "		}",
+      "	},",
+      "});"
+    ]
+  },
+  "template": {
+    "scope": "csharp",
+    "prefix": "template",
+    "body": [
+      "Template = new Pulumi.AzureNative.App.Inputs.TemplateArgs",
+      "{",
+      "	Containers = new[]",
+      "	{",
+      "		new Pulumi.AzureNative.App.Inputs.ContainerArgs",
+      "		{",
+      "			Name = \"albumapi\",",
+      "			Image = image.ImageName,",
+      "		}",
+      "	},",
+      "}"
+    ]
+  },
+  "ingress": {
+    "scope": "csharp",
+    "prefix": "ingress",
+    "body": [
+      "Ingress = new Pulumi.AzureNative.App.Inputs.IngressArgs",
+      "{",
+      "	External = true,",
+      "	TargetPort = 8080,",
+      "},"
+    ]
+  },
+  "registries": {
+    "scope": "csharp",
+    "prefix": "registries",
+    "body": [
+      "Registries = new Pulumi.AzureNative.App.Inputs.RegistryCredentialsArgs",
+      "{",
+      "	Server = registry.LoginServer,",
+      "	Username = username,",
+      "	PasswordSecretRef = \"password\",",
+      "},"
+    ]
+  },
+  "secrets": {
+    "scope": "csharp",
+    "prefix": "secrets",
+    "body": [
+      "Secrets = new[]",
+      "{",
+      "	new Pulumi.AzureNative.App.Inputs.SecretArgs",
+      "	{",
+      "		Name = \"password\",",
+      "		Value = password,",
+      "	},",
+      "}"
+    ]
+  }
+}
